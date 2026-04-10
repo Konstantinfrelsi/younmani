@@ -9,24 +9,24 @@ export default function Hero() {
   }
 
   return (
-    <section
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0d0d0d]"
-      style={{
-        backgroundImage: `radial-gradient(ellipse at 20% 60%, rgba(201,169,110,0.06) 0%, transparent 60%),
-                          radial-gradient(ellipse at 80% 30%, rgba(201,169,110,0.04) 0%, transparent 50%)`,
-      }}
-    >
-      {/* Diagonal accent line */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0d0d0d]">
+      {/* Hero background image */}
+      <img
+        src="/hero-bg.jpg"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover object-center"
+        style={{ filter: 'brightness(0.55) saturate(1.1)' }}
+      />
+
+      {/* Layered overlays: left-to-right dark for text, bottom fade to section */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: `repeating-linear-gradient(
-            -45deg,
-            transparent,
-            transparent 80px,
-            rgba(201,169,110,0.015) 80px,
-            rgba(201,169,110,0.015) 81px
-          )`,
+          background: `
+            linear-gradient(to right, rgba(13,13,13,0.92) 0%, rgba(13,13,13,0.65) 55%, rgba(13,13,13,0.25) 100%),
+            linear-gradient(to top, rgba(13,13,13,1) 0%, transparent 30%)
+          `,
         }}
       />
 
