@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dark-950: #080808;
+  --color-dark-900: #0d0d0d;
+  --color-dark-800: #141414;
+  --color-dark-700: #1a1a1a;
+  --color-dark-600: #242424;
+  --color-dark-500: #2e2e2e;
+  --color-gold: #c9a96e;
+  --color-gold-light: #e8d5a8;
+  --color-gold-dark: #a88b4a;
+  --font-heading: 'Montserrat', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-dark-900);
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* ── Nav glass ── */
+.nav-glass {
+  background: rgba(13, 13, 13, 0.90);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  border-bottom: 1px solid rgba(201, 169, 110, 0.12);
+}
+
+/* ── Scroll reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition: opacity 0.9s cubic-bezier(0.32, 0.72, 0, 1),
+              transform 0.9s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-d1 { transition-delay: 100ms; }
+.reveal-d2 { transition-delay: 200ms; }
+.reveal-d3 { transition-delay: 300ms; }
+.reveal-d4 { transition-delay: 400ms; }
+.reveal-d5 { transition-delay: 500ms; }
+
+/* ── Gold gradient text ── */
+.text-gold-grad {
+  background: linear-gradient(135deg, var(--color-gold-light), var(--color-gold), var(--color-gold-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Button push ── */
+.btn-push:active {
+  transform: scale(0.97) translateY(1px);
+}
+
+/* ── Price row hover ── */
+.price-row {
+  transition: background 0.25s ease;
+}
+.price-row:hover {
+  background: rgba(201, 169, 110, 0.05);
+}
+
+/* ── Gallery card ── */
+.gallery-card {
+  overflow: hidden;
+}
+.gallery-card img {
+  transition: transform 1.4s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.gallery-card:hover img {
+  transform: scale(1.07);
+}
+
+/* ── Mobile menu ── */
+.mobile-menu {
+  clip-path: circle(0% at calc(100% - 2rem) 2rem);
+  transition: clip-path 0.7s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.mobile-menu.open {
+  clip-path: circle(150% at calc(100% - 2rem) 2rem);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--color-dark-950); }
+::-webkit-scrollbar-thumb { background: rgba(201, 169, 110, 0.25); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-gold); }
