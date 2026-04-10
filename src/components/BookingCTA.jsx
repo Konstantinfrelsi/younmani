@@ -1,95 +1,92 @@
-import { Phone, Scissors } from 'lucide-react'
+import { Phone, MapPin } from 'lucide-react'
 import { useReveal } from '../hooks/useReveal'
 
 export default function BookingCTA() {
   useReveal()
 
   return (
-    <section
-      className="relative py-28 px-6 overflow-hidden"
-      style={{
-        background: `linear-gradient(135deg, #0d0d0d 0%, #1a1200 50%, #0d0d0d 100%)`,
-      }}
-    >
-      {/* Background texture */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-30"
-        style={{
-          backgroundImage: `repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 40px,
-            rgba(201,169,110,0.04) 40px,
-            rgba(201,169,110,0.04) 41px
-          ),
-          repeating-linear-gradient(
-            90deg,
-            transparent,
-            transparent 40px,
-            rgba(201,169,110,0.04) 40px,
-            rgba(201,169,110,0.04) 41px
-          )`,
-        }}
-      />
+    <section className="relative py-40 px-10 sm:px-16 lg:px-24 overflow-hidden bg-[#080808]">
 
-      {/* Gold orb */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 70%)' }} />
+      {/* Background image strip */}
+      <div className="absolute inset-0">
+        <img src="/hero-bg.jpg" alt="" aria-hidden
+          className="w-full h-full object-cover"
+          style={{ objectPosition: 'center 50%', filter: 'brightness(0.18) saturate(0.7)' }} />
+        <div className="absolute inset-0"
+          style={{ background: 'linear-gradient(135deg, rgba(8,8,8,0.97) 0%, rgba(8,8,8,0.75) 100%)' }} />
+      </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto text-center">
-        <div className="reveal mb-6">
-          <Scissors size={28} className="text-[#C9A96E] mx-auto mb-4" />
-          <p
-            className="text-xs font-bold tracking-[0.45em] text-[#C9A96E] uppercase"
-            style={{ fontFamily: 'var(--font-heading)' }}
-          >
-            Termin vereinbaren
-          </p>
-        </div>
+      {/* Gold accent lines */}
+      <div className="absolute top-0 left-24 right-24 h-px bg-gradient-to-r from-transparent via-[#C9A96E]/30 to-transparent" />
+      <div className="absolute bottom-0 left-24 right-24 h-px bg-gradient-to-r from-transparent via-[#C9A96E]/30 to-transparent" />
 
-        <h2
-          className="reveal reveal-d1 text-4xl sm:text-5xl lg:text-6xl font-black text-white uppercase leading-tight mb-6"
-          style={{ fontFamily: 'var(--font-heading)' }}
-        >
-          Buche deinen Stuhl<br />
-          <span className="text-gold-grad">bei uns in Kassel</span>
-        </h2>
+      <div className="relative z-10 max-w-screen-xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
-        <p className="reveal reveal-d2 text-white/60 text-lg mb-10 max-w-lg mx-auto">
-          Rufe uns einfach an und wir vereinbaren gemeinsam Ihren Wunschtermin.
-          Montag bis Samstag, 09:00 – 18:00 Uhr.
-        </p>
+          {/* Left */}
+          <div>
+            <p className="reveal section-label mb-8">Termin vereinbaren</p>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 300, fontStyle: 'italic', lineHeight: 1.05, fontSize: 'clamp(2.5rem,4.5vw,4.5rem)' }}
+              className="reveal reveal-d1 text-white mb-2">
+              Buche deinen Stuhl
+            </h2>
+            <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, lineHeight: 0.9, letterSpacing: '-0.04em', fontSize: 'clamp(2.5rem,4.5vw,4.5rem)' }}
+              className="reveal reveal-d2 gold-text uppercase mb-10">
+              in Kassel.
+            </h2>
 
-        <div className="reveal reveal-d3 flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="tel:056147547157"
-            className="flex items-center justify-center gap-3 bg-[#C9A96E] hover:bg-[#e8d5a8] text-black font-black tracking-widest uppercase px-10 py-5 text-base transition-all duration-200 btn-push"
-            style={{ fontFamily: 'var(--font-heading)' }}
-          >
-            <Phone size={18} />
-            0561 475 471 57
-          </a>
-          <a
-            href="https://maps.app.goo.gl/4ZmXjhG4BzRnKbTq5"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 border border-[#C9A96E]/40 hover:border-[#C9A96E] text-[#C9A96E] font-bold tracking-widest uppercase px-10 py-5 text-sm transition-all duration-200"
-          >
-            Weg zu uns
-          </a>
-        </div>
+            <p className="reveal reveal-d3 text-white/45 text-sm leading-relaxed max-w-sm mb-12">
+              Ein Anruf genügt. Wir reservieren Ihren Termin persönlich und beraten Sie
+              zu Ihrem Wunschlook — ohne Warteliste.
+            </p>
 
-        {/* Opening hours strip */}
-        <div className="reveal reveal-d4 mt-12 flex flex-wrap justify-center gap-x-10 gap-y-2">
-          {[
-            { day: 'Mo – Sa', time: '09:00 – 18:00' },
-            { day: 'Sonntag', time: 'Geschlossen' },
-          ].map((o) => (
-            <div key={o.day} className="text-center">
-              <p className="text-white/40 text-xs tracking-widest uppercase">{o.day}</p>
-              <p className="text-white/70 text-sm font-medium">{o.time}</p>
+            <div className="reveal reveal-d4 flex flex-col sm:flex-row gap-4">
+              <a href="tel:056147547157" className="btn-gold">
+                <Phone size={13} strokeWidth={2.5} />
+                0561 475 471 57
+              </a>
+              <a href="https://maps.app.goo.gl/4ZmXjhG4BzRnKbTq5" target="_blank" rel="noopener noreferrer"
+                className="btn-outline">
+                <MapPin size={13} strokeWidth={2} />
+                Weg zu uns
+              </a>
             </div>
-          ))}
+          </div>
+
+          {/* Right: info block */}
+          <div className="reveal reveal-d2">
+            <div className="border border-white/8 p-10" style={{ background: 'rgba(14,14,14,0.6)' }}>
+              <p className="section-label mb-8">Öffnungszeiten</p>
+
+              <div className="space-y-6">
+                {[
+                  { day: 'Montag – Samstag', time: '09:00 – 18:00 Uhr', open: true },
+                  { day: 'Sonntag', time: 'Geschlossen', open: false },
+                ].map(o => (
+                  <div key={o.day} className="flex items-center justify-between">
+                    <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 300, fontSize: '0.8rem', letterSpacing: '0.1em' }}
+                      className={o.open ? 'text-white/70' : 'text-white/25'}>{o.day}</span>
+                    <span style={{ fontFamily: 'var(--font-heading)', fontWeight: o.open ? 600 : 300, fontSize: '0.8rem' }}
+                      className={o.open ? 'text-[#C9A96E]' : 'text-white/25'}>{o.time}</span>
+                  </div>
+                ))}
+              </div>
+
+              <hr className="rule my-8" />
+
+              <div className="space-y-3">
+                <p className="section-label">Adresse</p>
+                <p style={{ fontSize: '0.85rem', lineHeight: 1.7 }} className="text-white/55">
+                  Frankfurter Str. 210<br />34134 Kassel, Deutschland
+                </p>
+                <a href="mailto:mail@younmani.de"
+                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 300, fontSize: '0.75rem', letterSpacing: '0.1em' }}
+                  className="text-[#C9A96E]/70 hover:text-[#C9A96E] transition-colors">
+                  mail@younmani.de
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -1,207 +1,142 @@
 import { useState } from 'react'
-import { ChevronLeft, ChevronRight, Star } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useReveal } from '../hooks/useReveal'
 
 const REVIEWS = [
   {
     name: 'Sylvia U.',
     stars: 5,
-    text: 'Ich bin so gut wie nie zum Friseur, weil ich meist unzufriedener raus kam als ich rein ging. Dieses Mal habe ich es mich erneut gewagt – ohne Vorstellung wie ich es eigentlich haben will und mit viel Skepsis. Und ich muss sagen: Top Beratung, perfektes Ergebnis. Ich bin so happy!',
+    text: 'Ich bin so gut wie nie zum Friseur, weil ich meist unzufriedener raus kam als ich rein ging. Und ich muss sagen — Top Beratung, perfektes Ergebnis. Ich bin so happy!',
     url: 'https://maps.app.goo.gl/DTL34zkgmKssyGEy7',
   },
   {
     name: 'Ahmed K.',
     stars: 5,
-    text: 'Bester Friseur in Kassel! Mansoor versteht sofort was man möchte und setzt es perfekt um. Das All-Inklusive Paket für Herren ist sein Geld mehr als wert. Komme seitdem regelmäßig her.',
+    text: 'Bester Friseur in Kassel. Mansoor versteht sofort was man möchte und setzt es perfekt um. Das All-Inklusive Paket ist sein Geld mehr als wert.',
     url: 'https://maps.app.goo.gl/4ZmXjhG4BzRnKbTq5',
   },
   {
     name: 'Laura M.',
     stars: 5,
-    text: 'Für meinen Balayage bin ich extra weit gefahren und es hat sich absolut gelohnt. Mansoor hat sich viel Zeit für die Beratung genommen und das Ergebnis übertrifft alle Erwartungen. Wunderschön!',
+    text: 'Für meinen Balayage bin ich extra weit gefahren — es hat sich absolut gelohnt. Mansoor nahm sich viel Zeit für Beratung und das Ergebnis übertrifft alle Erwartungen.',
     url: 'https://maps.app.goo.gl/4ZmXjhG4BzRnKbTq5',
   },
 ]
 
-function StarRating({ count = 5 }) {
-  return (
-    <div className="flex gap-0.5">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <Star
-          key={i}
-          size={14}
-          className={i < count ? 'text-yellow-400 fill-yellow-400' : 'text-white/20'}
-        />
-      ))}
-    </div>
-  )
-}
-
 export default function Reviews() {
   useReveal()
   const [idx, setIdx] = useState(0)
-  const review = REVIEWS[idx]
+  const r = REVIEWS[idx]
 
   return (
-    <section id="bewertungen" className="bg-[#0d0d0d] py-24 px-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-14">
-          <div className="reveal flex items-center justify-center gap-3 mb-5">
-            <div className="w-8 h-px bg-[#C9A96E]" />
-            <span
-              className="text-xs font-bold tracking-[0.4em] text-[#C9A96E] uppercase"
-              style={{ fontFamily: 'var(--font-heading)' }}
-            >
-              Google Bewertungen
-            </span>
-            <div className="w-8 h-px bg-[#C9A96E]" />
-          </div>
-          <h2
-            className="reveal reveal-d1 text-4xl sm:text-5xl font-black text-white uppercase"
-            style={{ fontFamily: 'var(--font-heading)' }}
-          >
-            Aus Kunden werden{' '}
-            <span className="text-gold-grad">Freunde</span>
-          </h2>
-        </div>
+    <section id="bewertungen" className="bg-[#0a0a0a] py-36 px-10 sm:px-16 lg:px-24">
+      <div className="max-w-screen-xl mx-auto">
 
-        <div className="grid lg:grid-cols-2 gap-10 items-start">
-          {/* Review card */}
-          <div className="reveal">
-            <div
-              className="border border-[#C9A96E]/20 p-8 relative"
-              style={{ background: 'rgba(20,20,20,0.8)' }}
-            >
-              {/* Quote mark */}
-              <div
-                className="absolute top-5 right-6 text-6xl font-black text-[#C9A96E]/10 leading-none select-none"
-                style={{ fontFamily: 'Georgia, serif' }}
-              >
-                "
-              </div>
+        {/* Top rule */}
+        <hr className="rule mb-20" />
 
-              <StarRating count={review.stars} />
+        <div className="grid lg:grid-cols-[1fr_1.4fr] gap-16 lg:gap-24 items-start">
 
-              <blockquote className="mt-4 text-white/80 leading-relaxed text-sm italic mb-6">
-                „{review.text}"
-              </blockquote>
+          {/* Left: meta */}
+          <div>
+            <p className="reveal section-label mb-8">Google Bewertungen</p>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 300, fontStyle: 'italic', lineHeight: 1.05, fontSize: 'clamp(2.5rem,4vw,4rem)' }}
+              className="reveal reveal-d1 text-white mb-2">
+              Aus Kunden
+            </h2>
+            <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, lineHeight: 0.9, letterSpacing: '-0.04em', fontSize: 'clamp(2.5rem,4vw,4rem)' }}
+              className="reveal reveal-d2 gold-text uppercase mb-14">
+              werden Freunde.
+            </h2>
 
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div
-                    className="w-9 h-9 bg-[#C9A96E] flex items-center justify-center text-black font-black text-sm"
-                    style={{ fontFamily: 'var(--font-heading)' }}
-                  >
-                    {review.name[0]}
-                  </div>
-                  <div>
-                    <p className="text-white font-semibold text-sm">{review.name}</p>
-                    <p className="text-white/40 text-xs">Google-Bewertung</p>
-                  </div>
-                </div>
-                <a
-                  href={review.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-[#C9A96E] hover:underline tracking-wider uppercase"
-                  style={{ fontFamily: 'var(--font-heading)' }}
-                >
-                  Weiterlesen →
-                </a>
-              </div>
-
-              {/* Nav */}
-              <div className="flex items-center gap-3 mt-6 pt-5 border-t border-white/10">
-                <button
-                  onClick={() => setIdx((i) => (i - 1 + REVIEWS.length) % REVIEWS.length)}
-                  className="w-8 h-8 border border-white/20 hover:border-[#C9A96E] flex items-center justify-center text-white/60 hover:text-[#C9A96E] transition-colors"
-                >
-                  <ChevronLeft size={14} />
-                </button>
-                <div className="flex gap-1.5">
-                  {REVIEWS.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setIdx(i)}
-                      className={`w-1.5 h-1.5 transition-colors ${
-                        i === idx ? 'bg-[#C9A96E]' : 'bg-white/20 hover:bg-white/40'
-                      }`}
-                    />
-                  ))}
-                </div>
-                <button
-                  onClick={() => setIdx((i) => (i + 1) % REVIEWS.length)}
-                  className="w-8 h-8 border border-white/20 hover:border-[#C9A96E] flex items-center justify-center text-white/60 hover:text-[#C9A96E] transition-colors"
-                >
-                  <ChevronRight size={14} />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Stats + CTA */}
-          <div className="reveal reveal-d2 space-y-5">
-            {/* Rating stats */}
-            <div
-              className="border border-white/10 p-8 grid grid-cols-3 gap-6 text-center"
-              style={{ background: 'rgba(18,18,18,0.8)' }}
-            >
+            {/* Stats */}
+            <div className="reveal reveal-d2 space-y-6">
               {[
-                { num: '240+', label: 'Bewertungen' },
-                { num: '4.8', label: '⭐ Ø Sterne' },
-                { num: '#1', label: 'in Kassel' },
-              ].map((s) => (
-                <div key={s.label}>
-                  <p
-                    className="text-3xl font-black text-[#C9A96E]"
-                    style={{ fontFamily: 'var(--font-heading)' }}
-                  >
-                    {s.num}
-                  </p>
-                  <p className="text-white/50 text-xs mt-1 tracking-wide">{s.label}</p>
+                { n: '240+', l: 'authentische Bewertungen' },
+                { n: '4.8 / 5', l: 'durchschnittliche Bewertung' },
+              ].map(s => (
+                <div key={s.l} className="flex items-baseline gap-5">
+                  <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '2.2rem', letterSpacing: '-0.03em' }}
+                    className="gold-text">{s.n}</span>
+                  <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 200, letterSpacing: '0.18em', fontSize: '0.65rem' }}
+                    className="text-white/40 uppercase">{s.l}</span>
                 </div>
               ))}
             </div>
 
-            {/* Google bar */}
-            <div
-              className="border border-white/10 p-6 flex items-center justify-between gap-4"
-              style={{ background: 'rgba(18,18,18,0.8)' }}
-            >
-              <div>
-                <p
-                  className="text-white font-bold text-sm uppercase tracking-widest"
-                  style={{ fontFamily: 'var(--font-heading)' }}
-                >
-                  Waren Sie schon bei uns?
-                </p>
-                <p className="text-white/50 text-xs mt-1">
-                  Über eine ehrliche Bewertung würden wir uns sehr freuen.
-                </p>
+            <hr className="rule my-10" />
+
+            <a href="https://reviewthis.biz/mani" target="_blank" rel="noopener noreferrer"
+              className="reveal reveal-d3 btn-outline text-[0.65rem]" style={{ padding: '0.75rem 1.5rem' }}>
+              Bewertung hinterlassen
+            </a>
+          </div>
+
+          {/* Right: review slider */}
+          <div className="reveal reveal-d1">
+            {/* Large quote */}
+            <div className="border border-white/8 p-10 lg:p-14 relative overflow-hidden"
+              style={{ background: 'rgba(14,14,14,0.7)' }}>
+
+              {/* Decorative quote mark */}
+              <span style={{ fontFamily: 'var(--font-display)', fontWeight: 300, fontSize: '10rem', lineHeight: 1, color: 'rgba(201,169,110,0.06)', position: 'absolute', top: '-1rem', right: '1.5rem', userSelect: 'none' }}>
+                "
+              </span>
+
+              {/* Stars */}
+              <div className="flex gap-1 mb-8">
+                {[...Array(r.stars)].map((_, i) => (
+                  <span key={i} style={{ fontSize: '0.8rem' }} className="text-[#C9A96E]">★</span>
+                ))}
               </div>
-              <a
-                href="https://reviewthis.biz/mani"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-shrink-0 bg-[#C9A96E] hover:bg-[#e8d5a8] text-black text-xs font-black tracking-widest uppercase px-5 py-3 transition-colors btn-push"
-                style={{ fontFamily: 'var(--font-heading)' }}
-              >
-                Bewerten
-              </a>
+
+              {/* Quote text */}
+              <blockquote style={{ fontFamily: 'var(--font-display)', fontWeight: 300, fontStyle: 'italic', fontSize: 'clamp(1.2rem,2vw,1.6rem)', lineHeight: 1.5, color: 'rgba(255,255,255,0.85)' }}
+                className="mb-10 relative z-10">
+                „{r.text}"
+              </blockquote>
+
+              {/* Author */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '0.85rem', background: '#C9A96E', color: '#000', width: '2.2rem', height: '2.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    {r.name[0]}
+                  </div>
+                  <div>
+                    <p style={{ fontFamily: 'var(--font-heading)', fontWeight: 500, fontSize: '0.82rem' }} className="text-white">{r.name}</p>
+                    <p style={{ fontFamily: 'var(--font-heading)', fontWeight: 200, letterSpacing: '0.2em', fontSize: '0.6rem' }} className="text-white/35 uppercase">Google-Bewertung</p>
+                  </div>
+                </div>
+                <a href={r.url} target="_blank" rel="noopener noreferrer"
+                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 300, letterSpacing: '0.2em', fontSize: '0.6rem' }}
+                  className="text-[#C9A96E]/60 hover:text-[#C9A96E] uppercase transition-colors hidden sm:block">
+                  Weiterlesen →
+                </a>
+              </div>
             </div>
 
-            {/* Testimonial quote */}
-            <div className="border-l-2 border-[#C9A96E] pl-5">
-              <p className="text-white/60 text-sm italic leading-relaxed">
-                „Wir sind stolz – mit über <strong className="text-white">240 authentischen
-                Bewertungen</strong> und einer durchschnittlichen Bewertung von{' '}
-                <strong className="text-[#C9A96E]">4,8 Sternen</strong> zählt You'N Mani zu den
-                bestbewerteten Friseuren in Kassel."
-              </p>
+            {/* Nav */}
+            <div className="flex items-center gap-4 mt-6">
+              <button onClick={() => setIdx(i => (i - 1 + REVIEWS.length) % REVIEWS.length)}
+                className="w-9 h-9 border border-white/12 hover:border-[#C9A96E]/50 flex items-center justify-center text-white/40 hover:text-[#C9A96E] transition-all">
+                <ChevronLeft size={14} />
+              </button>
+              <div className="flex gap-2">
+                {REVIEWS.map((_, i) => (
+                  <button key={i} onClick={() => setIdx(i)}
+                    className="transition-all duration-300"
+                    style={{ width: i === idx ? '1.5rem' : '0.4rem', height: '1px', background: i === idx ? '#C9A96E' : 'rgba(255,255,255,0.2)' }} />
+                ))}
+              </div>
+              <button onClick={() => setIdx(i => (i + 1) % REVIEWS.length)}
+                className="w-9 h-9 border border-white/12 hover:border-[#C9A96E]/50 flex items-center justify-center text-white/40 hover:text-[#C9A96E] transition-all">
+                <ChevronRight size={14} />
+              </button>
             </div>
           </div>
         </div>
+
+        <hr className="rule mt-20" />
       </div>
     </section>
   )
