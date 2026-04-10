@@ -10,6 +10,7 @@ import Footer from './components/Footer'
 import CookieBanner from './components/CookieBanner'
 import Impressum from './components/Impressum'
 import Datenschutz from './components/Datenschutz'
+import SalonSystemPage from './components/SalonSystemPage'
 
 function LandingPage() {
   return (
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/datenschutz" element={<Datenschutz />} />
+          <Route path="/salon-system" element={<SalonSystemPage />} />
         </Routes>
       </main>
       <Footer />
