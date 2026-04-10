@@ -7,20 +7,23 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#080808]">
 
-      {/* Background image — contained so scissors/table/mirror all visible */}
-      <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+      {/* Background image — full height, no zoom, side-faded */}
+      <div className="absolute inset-0 overflow-hidden flex items-center justify-center">
         <img
           src="/hero-bg.jpg"
           alt=""
           aria-hidden
           style={{
-            height: '92%',
+            height: '100%',
             width: 'auto',
-            maxWidth: 'none',
-            objectFit: 'contain',
-            filter: 'brightness(0.42) saturate(1.05)',
+            flexShrink: 0,
+            filter: 'brightness(0.44) saturate(1.05)',
           }}
         />
+        {/* Side fades — seamless bleed into dark bg */}
+        <div className="absolute inset-0 pointer-events-none" style={{
+          background: 'linear-gradient(to right, #080808 0%, rgba(8,8,8,0.15) 22%, rgba(8,8,8,0.15) 78%, #080808 100%)'
+        }} />
       </div>
 
       {/* Radial vignette — darker edges, brighter center focus */}
